@@ -51,12 +51,38 @@
       font-size: 0.9rem;
       color: #aaa;
     }
+
+    /* Chat iframe styling */
+    .chat-widget {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 350px;
+      height: 500px;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1000;
+      background-color: #000;
+    }
   </style>
 </head>
 <body>
   <h1>Dex Jake Allen Company</h1>
   <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
   <button class="button">Learn More</button>
+
+  <!-- n8n Chat Widget -->
+  <div class="chat-widget">
+    <iframe 
+      src="https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat" 
+      width="100%" 
+      height="100%" 
+      style="border:none;"
+      title="Dex Jake Allen Chat"
+    ></iframe>
+  </div>
+
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
 </body>
 </html>
