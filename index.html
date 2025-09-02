@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dex Jake Allen Company</title>
+
+  <!-- n8n Chat Widget CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+
   <style>
     body {
       margin: 0;
@@ -51,67 +55,6 @@
       font-size: 0.9rem;
       color: #aaa;
     }
-
-    /* Chat widget styles */
-    #chat-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 350px;
-      max-height: 500px;
-      background-color: #111;
-      border: 2px solid #fff;
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      z-index: 1000;
-      font-size: 14px;
-    }
-
-    #chat-header {
-      background-color: #222;
-      padding: 10px;
-      cursor: pointer;
-      color: #fff;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    #chat-messages {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      background-color: #000;
-      color: #fff;
-    }
-
-    #chat-input {
-      display: flex;
-      border-top: 1px solid #444;
-    }
-
-    #chat-input input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      outline: none;
-      background-color: #111;
-      color: #fff;
-    }
-
-    #chat-input button {
-      padding: 10px;
-      border: none;
-      background-color: #fff;
-      color: #000;
-      cursor: pointer;
-    }
-
-    #chat-input button:hover {
-      background-color: #444;
-      color: #fff;
-    }
   </style>
 </head>
 <body>
@@ -119,69 +62,17 @@
   <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
   <button class="button">Learn More</button>
 
-  <!-- Chat Widget -->
-  <div id="chat-container">
-    <div id="chat-header">Chat with us</div>
-    <div id="chat-messages"></div>
-    <div id="chat-input">
-      <input type="text" id="chat-text" placeholder="Type a message..." />
-      <button id="send-btn">Send</button>
-    </div>
-  </div>
-
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
 
-  <script>
-    const chatHeader = document.getElementById('chat-header');
-    const chatContainer = document.getElementById('chat-container');
-    const chatMessages = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-text');
-    const sendBtn = document.getElementById('send-btn');
+  <!-- n8n Chat Widget Script -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-    const webhookURL = "https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat";
-
-    // Collapse/Expand chat
-    chatHeader.addEventListener('click', () => {
-      if (chatMessages.style.display === 'none') {
-        chatMessages.style.display = 'block';
-        chatInput.parentElement.style.display = 'flex';
-      } else {
-        chatMessages.style.display = 'none';
-        chatInput.parentElement.style.display = 'none';
-      }
-    });
-
-    // Send message function
-    async function sendMessage() {
-      const message = chatInput.value.trim();
-      if (!message) return;
-      appendMessage('You', message);
-      chatInput.value = '';
-
-      try {
-        const response = await fetch(webhookURL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message })
-        });
-        const data = await response.json();
-        appendMessage('Bot', data.reply || 'No response from bot');
-      } catch (err) {
-        appendMessage('Bot', 'Error connecting to chat');
-        console.error(err);
-      }
-    }
-
-    function appendMessage(sender, text) {
-      const msgDiv = document.createElement('div');
-      msgDiv.textContent = `${sender}: ${text}`;
-      chatMessages.appendChild(msgDiv);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    sendBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') sendMessage();
+    createChat({
+      webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
+      position: 'bottom-right',  // Position of the widget
+      theme: 'dark',             // 'dark' or 'light'
+      title: 'Chat with us'      // Optional header title
     });
   </script>
 </body>
