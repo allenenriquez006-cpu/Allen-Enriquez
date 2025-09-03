@@ -11,9 +11,9 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #ffdee9, #ff9a9e, #fad0c4);
+      color: #4a2c2c;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -26,11 +26,14 @@
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
+      color: #b83280;
+      text-shadow: 2px 2px #ffd6e0;
     }
 
     p {
       font-size: 1.2rem;
       max-width: 600px;
+      color: #4a2c2c;
     }
 
     .button {
@@ -38,22 +41,25 @@
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
       border: none;
-      border-radius: 8px;
-      background-color: #fff;
-      color: #000;
+      border-radius: 30px;
+      background-color: #ff69b4;
+      color: #fff;
+      font-weight: bold;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
     }
 
     .button:hover {
-      background-color: #444;
-      color: #fff;
+      background-color: #ff1493;
+      box-shadow: 0 6px 14px rgba(255, 20, 147, 0.6);
+      transform: scale(1.05);
     }
 
     footer {
       margin-top: 2rem;
       font-size: 0.9rem;
-      color: #aaa;
+      color: #5c3d3d;
     }
 
     /* Image section */
@@ -68,13 +74,14 @@
     .image-container img {
       width: 100%;
       max-width: 350px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-      transition: transform 0.3s ease;
+      border-radius: 20px;
+      box-shadow: 0 6px 14px rgba(255, 105, 180, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .image-container img:hover {
       transform: scale(1.05);
+      box-shadow: 0 8px 18px rgba(255, 20, 147, 0.5);
     }
 
     /* Left-align chat messages in n8n widget */
@@ -89,8 +96,8 @@
 
   <!-- Image section -->
   <div class="image-container">
-    <img src="541183749_3999823426933241_8746689353817126752_n.jpg" alt="Gym pose 1" />
-    <img src="541233694_751257461147648_7446016843269910942_n.jpg" alt="Gym pose 2" />
+    <img src="https://i.imgur.com/f49GdlC.jpg" alt="Gym pose 1" />
+    <img src="https://i.imgur.com/orJ0dg2.jpg" alt="Gym pose 2" />
   </div>
 
   <button class="button">Learn More</button>
@@ -104,8 +111,8 @@
     createChat({
       webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
       position: 'bottom-right',
-      theme: 'dark',
-      title: 'Chat with us'
+      theme: 'light',
+      title: '💬 Chat with us'
     });
   </script>
 </body>
