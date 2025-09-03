@@ -1,111 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dex Jake Allen Company</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dex Jake Allen Company — Chat fix</title>
 
   <!-- n8n Chat Widget CSS -->
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 
   <style>
-    :root {
-      /* Custom colors */
-      --chat--message--bot--background: #ffffff;
-      --chat--message--bot--color: #000000;
-      --chat--message--user--background: #06beb6;
-      --chat--message--user--color: #ffffff;
-      --chat--message--font-size: 0.95rem;
-      --chat--message-line-height: 1.6;
-    }
+    /* Page layout (keep hero centered but do NOT let it force widget text center) */
+    body { margin:0; font-family:Arial,system-ui,Segoe UI,Roboto,"Helvetica Neue",sans-serif; background:#000; color:#fff; min-height:100vh; display:flex; flex-direction:column; }
+    main { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 20px; text-align:center; }
+    h1{ margin:0 0 8px 0; font-size:2.8rem; }
+    p{ margin:0 0 16px 0; color:#e6e6e6; max-width:760px; }
+    .button{ display:inline-block; margin-top:20px; padding:.85rem 1.6rem; border-radius:10px; border:0; background:#fff; color:#000; cursor:pointer; font-weight:600; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #000;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+    footer{ margin-top:auto; padding:18px 20px; color:#aaa; text-align:center; font-size:.95rem; }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
+    /* Chat host positioning (bottom-right, high z-index) */
+    #n8n-chat-host { position:fixed; right:20px; bottom:20px; z-index:2147483647; }
 
-    p {
-      font-size: 1.2rem;
-      max-width: 600px;
-    }
+    /* Safety: make sure page-wide center alignment does not bleed into the widget host */
+    /* We will still inject stronger rules into the host via JS below. */
+    #n8n-chat-host, #n8n-chat-host * { text-align: left !important; }
 
-    .button {
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
-      background: #fff;
-      color: #000;
-      cursor: pointer;
-    }
+    /* Minimal fallback CSS to make bubbles look good if injected successfully */
+    #n8n-chat-host .n8n-chat-message-content { max-width: 420px !important; border-radius:12px !important; padding:10px 14px !important; }
 
-    .button:hover {
-      background: #444;
-      color: #fff;
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-
-    /* ---- FIX BOT ALIGNMENT ---- */
-    .n8n-chat .n8n-chat-message--bot {
-      justify-content: flex-start !important;   /* Align bubble to the left */
-    }
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
-      text-align: left !important;              /* Align text inside */
-      background: #ffffff !important;
-      color: #000000 !important;
-    }
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content * {
-      text-align: left !important;
-      color: #000000 !important;
-    }
-
-    /* ---- USER ALIGNMENT ---- */
-    .n8n-chat .n8n-chat-message--user {
-      justify-content: flex-end !important;     /* Align bubble to the right */
-    }
-    .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
-      text-align: right !important;
-      background: #06beb6 !important;
-      color: #ffffff !important;
-    }
+    /* Default separate rules - real enforcement happens in JS by injecting a style tag inside the widget host */
   </style>
 </head>
 <body>
-  <h1>Dex Jake Allen Company</h1>
-  <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
-  <button class="button">Learn More</button>
+  <main>
+    <h1>Dex Jake Allen Company</h1>
+    <p>Welcome — we fixed the chat alignment. If you still see centered bot text, open DevTools → Inspect chat bubble and check console for debug messages.</p>
+    <button class="button">Learn More</button>
+  </main>
 
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
+
+  <!-- Host for the n8n widget (we render the widget inside here) -->
+  <div id="n8n-chat-host" aria-hidden="false"></div>
 
   <!-- n8n Chat Widget Script -->
   <script type="module">
     import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
+    // Create the chat inside our host. mode:'inline' ensures it's rendered in page DOM (not an iframe).
     createChat({
       webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
-      position: 'bottom-right',
-      theme: 'dark',
-      title: 'Chat with us'
+      target: '#n8n-chat-host',
+      mode: 'inline',           // render inline so we can reliably style it
+      showWelcomeScreen: false,
+      title: 'Chat with us',
+      i18n: { en: { inputPlaceholder: 'Type your message…' } }
     });
+
+    /******************************************************************
+     * Robust styling injector + mutation observer
+     * - Waits for the widget to appear inside #n8n-chat-host
+     * - Injects a style tag inside the widget host (strong !important rules)
+     * - Applies inline styles to existing bot messages and any new bot messages
+     ******************************************************************/
+    (function enforceBotLeftAlignment() {
+      const host = document.getElementById('n8n-chat-host');
+      if (!host) { console.warn('Chat host not found'); return; }
+
+      const WIDGET_SELECTOR = '.n8n-chat'; // top-level widget element inserted by n8n
+      const BOT_MSG_SELECTOR = '.n8n-chat-message--bot';
+      const USER_MSG_SELECTOR = '.n8n-chat-message--user';
+      const MSG_CONTENT = '.n8n-chat-message-content';
+
+      // Strong CSS rules to be injected inside the host
+      const injectedCSS = `
+        /* Inserted by enforceBotLeftAlignment() */
+        .n8n-chat { --chat--message--font-size: 0.98rem !important; }
+        ${BOT_MSG_SELECTOR} {
+          justify-content: flex-start !important;
+          align-items: flex-start !important;
+        }
+        ${BOT_MSG_SELECTOR} ${MSG_CONTENT} {
+          background: #ffffff !important;
+          color: #000000 !important;
+          text-align: left !important;
+          border-radius: 12px !important;
+          max-width: 84% !important;
+        }
+        ${BOT_MSG_SELECTOR} ${MSG_CONTENT} * {
+          color: #000000 !important;
+          text-align: left !important;
+        }
+
+        ${USER_MSG_SELECTOR} {
+          justify-content: flex-end !important;
+          align-items: flex-end !important;
+        }
+        ${USER_MSG_SELECTOR} ${MSG_CONTENT} {
+          background: #06beb6 !important;
+          color: #ffffff !important;
+          text-align: right !important;
+          border-radius: 12px !important;
+          max-width: 84% !important;
+        }
+
+        /* Input text visibility */
+        .n8n-chat-input, .n8n-chat-input * { color: #000 !important; }
+      `;
+
+      // Apply inline styles to a bot message node
+      function styleBotMessage(msgEl) {
+        try {
+          // align the message container
+          msgEl.style.justifyContent = 'flex-start';
+          msgEl.style.alignItems = 'flex-start';
+
+          // style content bubble
+          const content = msgEl.querySelector(MSG_CONTENT);
+          if (content) {
+            content.style.background = '#ffffff';
+            content.style.color = '#000000';
+            content.style.textAlign = 'left';
+            content.style.borderRadius = '12px';
+            content.style.maxWidth = '84%';
+            // force children (spans/ps) to black and left
+            content.querySelectorAll('*').forEach(ch => {
+              if (ch.style) { ch.style.color = '#000000'; ch.style.textAlign = 'left'; }
+            });
+          }
+        } catch (err) {
+          console.debug('styleBotMessage error', err);
+        }
+      }
+
+      // Apply inline styles to a user message node (keeps right alignment)
+      function styleUserMessage(msgEl) {
+        try {
+          msgEl.style.justifyContent = 'flex-end';
+          msgEl.style.alignItems = 'flex-end';
+          const content = msgEl.querySelector(MSG_CONTENT);
+          if (content) {
+            content.style.background = '#06beb6';
+            content.style.color = '#ffffff';
+            content.style.textAlign = 'right';
+            content.style.borderRadius = '12px';
+            content.style.maxWidth = '84%';
+          }
+        } catch (err) {
+          console.debug('styleUserMessage error', err);
+        }
+      }
+
+      // When widget root appears, inject CSS and attach observers
+      function onWidgetReady(widgetRoot) {
+        // 1) inject style tag directly inside our host so widget-local rules inherit it
+        if (!host.querySelector('#__n8n_bot_left_style')) {
+          const styleEl = document.createElement('style');
+          styleEl.id = '__n8n_bot_left_style';
+          styleEl.textContent = injectedCSS;
+          host.appendChild(styleEl);
+          console.log('Injected widget CSS overrides');
+        }
+
+        // 2) style existing messages right away
+        widgetRoot.querySelectorAll(BOT_MSG_SELECTOR).forEach(styleBotMessage);
+        widgetRoot.querySelectorAll(USER_MSG_SELECTOR).forEach(styleUserMessage);
+
+        // 3) observe for new messages (childList + subtree)
+        const mo = new MutationObserver(mutations => {
+          for (const m of mutations) {
+            if (!m.addedNodes) continue;
+            m.addedNodes.forEach(node => {
+              if (!(node instanceof Element)) return;
+              // direct message node
+              if (node.matches && node.matches(BOT_MSG_SELECTOR)) styleBotMessage(node);
+              if (node.matches && node.matches(USER_MSG_SELECTOR)) styleUserMessage(node);
+              // nested newly-added messages
+              node.querySelectorAll && node.querySelectorAll(BOT_MSG_SELECTOR).forEach(styleBotMessage);
+              node.querySelectorAll && node.querySelectorAll(USER_MSG_SELECTOR).forEach(styleUserMessage);
+            });
+          }
+        });
+        mo.observe(widgetRoot, { childList: true, subtree: true });
+
+        // 4) safety interval to re-apply for stubborn cases (clears after 30s)
+        const reapply = setInterval(() => {
+          widgetRoot.querySelectorAll(BOT_MSG_SELECTOR).forEach(styleBotMessage);
+          widgetRoot.querySelectorAll(USER_MSG_SELECTOR).forEach(styleUserMessage);
+        }, 800);
+        setTimeout(() => clearInterval(reapply), 30000);
+
+        console.log('Bot-left-enforcer active');
+      }
+
+      // Watch host for the widget element to be added
+      const hostObserver = new MutationObserver(() => {
+        const widgetRoot = host.querySelector(WIDGET_SELECTOR);
+        if (widgetRoot) {
+          onWidgetReady(widgetRoot);
+          hostObserver.disconnect();
+        }
+      });
+      hostObserver.observe(host, { childList: true, subtree: true });
+
+      // Also check immediately in case it's already there
+      setTimeout(() => {
+        const widgetRoot = host.querySelector(WIDGET_SELECTOR);
+        if (widgetRoot) {
+          onWidgetReady(widgetRoot);
+          hostObserver.disconnect();
+        }
+      }, 400);
+
+      // Final fallback: if nothing appears in 5s, log advice to console for debugging
+      setTimeout(() => {
+        const widgetRoot = host.querySelector(WIDGET_SELECTOR);
+        if (!widgetRoot) {
+          console.warn('n8n chat widget not found inside #n8n-chat-host. Possible causes:\n' +
+            '- createChat did not render into this host (check the "target" option),\n' +
+            '- widget is rendered inside an iframe or closed shadow-root (not accessible from page JS),\n' +
+            '- the widget DOM structure changed (inspect the widget to find message class names).\n' +
+            'Open DevTools and inspect the chat bubble element to confirm where it is rendered.');
+        }
+      }, 5000);
+    })();
   </script>
 </body>
 </html>
