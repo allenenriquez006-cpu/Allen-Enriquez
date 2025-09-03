@@ -21,4 +21,76 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      color: #b5b5b5;
+      line-height: 1.6;
+    }
+
+    .button {
+      margin-top: 2rem;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #06beb6, #48b1bf);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(72, 177, 191, 0.3);
+    }
+
+    .button:hover {
+      background: linear-gradient(135deg, #11998e, #38ef7d);
+      box-shadow: 0 6px 16px rgba(56, 239, 125, 0.4);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    /* Left-align chat messages in n8n widget */
+    .n8n-chat .n8n-chat-message-content {
+      text-align: left !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dex Jake Allen Company</h1>
+  <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
+
+  <button class="button">Learn More</button>
+
+  <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
+
+  <!-- n8n Chat Widget Script -->
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
+      position: 'bottom-right',
+      theme: 'dark',
+      title: '💬 Chat with us'
+    });
+  </script>
+</body>
+</html>
