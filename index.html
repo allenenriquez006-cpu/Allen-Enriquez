@@ -18,8 +18,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+      padding: 20px;
     }
 
     h1 {
@@ -50,10 +51,30 @@
     }
 
     footer {
-      position: absolute;
-      bottom: 10px;
+      margin-top: 2rem;
       font-size: 0.9rem;
       color: #aaa;
+    }
+
+    /* Image section */
+    .image-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.05);
     }
 
     /* Left-align chat messages in n8n widget */
@@ -65,6 +86,13 @@
 <body>
   <h1>Dex Jake Allen Company</h1>
   <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
+
+  <!-- Image section -->
+  <div class="image-container">
+    <img src="541183749_3999823426933241_8746689353817126752_n.jpg" alt="Gym pose 1" />
+    <img src="541233694_751257461147648_7446016843269910942_n.jpg" alt="Gym pose 2" />
+  </div>
+
   <button class="button">Learn More</button>
 
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
@@ -75,9 +103,9 @@
 
     createChat({
       webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
-      position: 'bottom-right',  // Position of the widget
-      theme: 'dark',             // 'dark' or 'light'
-      title: 'Chat with us'      // Optional header title
+      position: 'bottom-right',
+      theme: 'dark',
+      title: 'Chat with us'
     });
   </script>
 </body>
