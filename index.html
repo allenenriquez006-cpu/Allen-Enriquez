@@ -29,7 +29,7 @@
     header {
       max-width: 900px;
       width: 100%;
-      text-align: left;
+      text-align: center; /* Centered text */
     }
 
     h1 {
@@ -43,11 +43,13 @@
     p {
       font-size: 1.2rem;
       max-width: 650px;
-      color: #b5b5b5;
-      margin-bottom: 2rem;
+      color: #dcdcdc; /* Brighter for better contrast */
+      margin: 0 auto 2rem auto;
     }
 
     .button {
+      display: inline-block;
+      margin: 0 auto; /* Center the button */
       padding: 0.9rem 2rem;
       font-size: 1rem;
       border: none;
@@ -69,7 +71,7 @@
     footer {
       margin-top: auto;
       font-size: 0.9rem;
-      color: #777;
+      color: #999;
       text-align: center;
       padding: 20px 0;
       border-top: 1px solid #222;
@@ -81,7 +83,7 @@
       font-family: "Montserrat", sans-serif !important;
       border-radius: 12px !important;
       overflow: hidden !important;
-      font-size: 0.9rem !important; /* Slightly smaller base font */
+      font-size: 0.9rem !important;
     }
 
     .n8n-chat-header {
@@ -90,7 +92,7 @@
       font-weight: 600 !important;
       text-align: left !important;
       padding-left: 20px !important;
-      font-size: 1rem !important; /* Header font size */
+      font-size: 1rem !important;
     }
 
     .n8n-chat .n8n-chat-message,
@@ -98,30 +100,36 @@
       text-align: left !important;
       justify-content: flex-start !important;
       align-items: flex-start !important;
-      line-height: 1.4 !important; /* Tighter spacing */
+      line-height: 1.5 !important;
     }
 
     .n8n-chat .n8n-chat-message-content {
       border-radius: 10px !important;
       padding: 8px 12px !important;
-      font-size: 0.9rem !important; /* Smaller text */
-      font-weight: 500 !important; /* Medium clarity */
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
     }
 
     .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
       background: #48b1bf !important;
-      color: #fff !important;
+      color: #ffffff !important; /* Pure white for max contrast */
     }
 
     .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
       background: #1a1a1a !important;
-      color: #f0f0f0 !important; /* Brighter text for readability */
+      color: #fafafa !important; /* Brighter than before */
     }
 
-    /* Optional: make input area match */
+    /* Input box styling */
     .n8n-chat-input {
       font-size: 0.9rem !important;
       padding: 8px 12px !important;
+      background: #111 !important;
+      color: #eaeaea !important;
+    }
+
+    .n8n-chat-input::placeholder {
+      color: #bbb !important;
     }
   </style>
 </head>
