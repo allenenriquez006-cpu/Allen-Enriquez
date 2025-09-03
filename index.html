@@ -56,9 +56,45 @@
       color: #aaa;
     }
 
-    /* Left-align chat messages in n8n widget */
+    /* --- Chat Widget Styling --- */
+
+    /* Left align all chat text */
+    .n8n-chat .n8n-chat-message,
     .n8n-chat .n8n-chat-message-content {
       text-align: left !important;
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+    }
+
+    /* Make chat text cleaner */
+    .n8n-chat .n8n-chat-message-content {
+      font-size: 0.95rem !important;
+      line-height: 1.5 !important;
+      padding: 10px 14px !important;
+      border-radius: 10px !important;
+      max-width: 90% !important;
+    }
+
+    /* Bot messages: left aligned */
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    /* User messages: right aligned */
+    .n8n-chat .n8n-chat-message--user {
+      justify-content: flex-end !important;
+    }
+    .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
+      background: #06beb6 !important;
+      color: #ffffff !important;
+    }
+
+    /* Input box styling */
+    .n8n-chat-input {
+      text-align: left !important;
+      font-size: 0.95rem !important;
+      padding: 10px 14px !important;
     }
   </style>
 </head>
@@ -75,11 +111,10 @@
 
     createChat({
       webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
-      position: 'bottom-right',  // Position of the widget
-      theme: 'dark',             // 'dark' or 'light'
-      title: 'Chat with us'      // Optional header title
+      position: 'bottom-right',
+      theme: 'dark',
+      title: 'Chat with us'
     });
   </script>
 </body>
 </html>
-
