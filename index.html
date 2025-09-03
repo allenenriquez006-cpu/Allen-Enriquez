@@ -58,32 +58,32 @@
 
     /* --- Chat Widget Styling --- */
 
-    /* Left align all chat text */
-    .n8n-chat .n8n-chat-message,
-    .n8n-chat .n8n-chat-message-content {
-      text-align: left !important;
-      justify-content: flex-start !important;
-      align-items: flex-start !important;
-    }
-
-    /* Make chat text cleaner */
+    /* Default message bubble styling */
     .n8n-chat .n8n-chat-message-content {
       font-size: 0.95rem !important;
       line-height: 1.5 !important;
       padding: 10px 14px !important;
       border-radius: 10px !important;
       max-width: 90% !important;
+      text-align: left !important;
     }
 
-    /* Bot messages: left aligned */
+    /* Bot messages: force left alignment */
+    .n8n-chat .n8n-chat-message--bot {
+      justify-content: flex-start !important;
+      align-items: flex-start !important;
+      text-align: left !important;
+    }
     .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
       background: #ffffff !important;
       color: #000000 !important;
     }
 
-    /* User messages: right aligned */
+    /* User messages: force right alignment */
     .n8n-chat .n8n-chat-message--user {
       justify-content: flex-end !important;
+      align-items: flex-end !important;
+      text-align: right !important;
     }
     .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
       background: #06beb6 !important;
