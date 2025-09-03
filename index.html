@@ -5,143 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dex Jake Allen Company</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
   <!-- n8n Chat Widget CSS -->
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 
   <style>
     body {
       margin: 0;
-      font-family: "Montserrat", sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #000;
-      color: #e5e5e5;
+      color: #fff;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      padding: 40px 20px;
-      line-height: 1.6;
-    }
-
-    header {
-      max-width: 900px;
-      width: 100%;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
     }
 
     h1 {
-      font-size: 3.5rem;
+      font-size: 3rem;
       margin-bottom: 1rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 1px;
     }
 
     p {
       font-size: 1.2rem;
-      max-width: 650px;
-      color: #eaeaea;
-      margin: 0 auto 2rem auto;
+      max-width: 600px;
     }
 
     .button {
-      display: block;
-      margin: 0 auto;
-      padding: 0.9rem 2rem;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
       font-size: 1rem;
       border: none;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #06beb6, #48b1bf);
-      color: #fff;
-      font-weight: 600;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #000;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(72, 177, 191, 0.3);
+      transition: background 0.3s ease;
     }
 
     .button:hover {
-      background: linear-gradient(135deg, #11998e, #38ef7d);
-      box-shadow: 0 6px 16px rgba(56, 239, 125, 0.4);
-      transform: translateY(-3px);
+      background-color: #444;
+      color: #fff;
     }
 
     footer {
-      margin-top: auto;
+      position: absolute;
+      bottom: 10px;
       font-size: 0.9rem;
-      color: #999;
-      text-align: center;
-      padding: 20px 0;
-      border-top: 1px solid #222;
-      width: 100%;
+      color: #aaa;
     }
 
-    /* Chat widget customization */
-    .n8n-chat {
-      font-family: "Montserrat", sans-serif !important;
-      border-radius: 12px !important;
-      overflow: hidden !important;
-      font-size: 1rem !important;
-    }
-
-    .n8n-chat-header {
-      background: linear-gradient(135deg, #06beb6, #48b1bf) !important;
-      color: #ffffff !important;
-      font-weight: 700 !important;
-      text-align: left !important;
-      padding-left: 20px !important;
-      font-size: 1rem !important;
-    }
-
+    /* Left-align chat messages in n8n widget */
     .n8n-chat .n8n-chat-message-content {
-      border-radius: 10px !important;
-      padding: 12px 16px !important;
-      font-size: 1rem !important;
-      font-weight: 600 !important;
-      line-height: 1.6 !important;
-    }
-
-    /* User messages: blue-green background + white text */
-    .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
-      background: #06beb6 !important;
-      color: #ffffff !important;
-    }
-
-    /* Bot messages: white background + black text */
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content,
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content * {
-      background: #ffffff !important;
-      color: #000000 !important;
-    }
-
-    /* Force override of nested spans/text */
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content span,
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content p {
-      color: #000000 !important;
-    }
-
-    /* Input box styling */
-    .n8n-chat-input {
-      font-size: 1rem !important;
-      padding: 10px 14px !important;
-      background: #111 !important;
-      color: #ffffff !important;
-      font-weight: 500 !important;
-    }
-
-    .n8n-chat-input::placeholder {
-      color: #cccccc !important;
+      text-align: left !important;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Dex Jake Allen Company</h1>
-    <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
-    <button class="button">Learn More</button>
-  </header>
+  <h1>Dex Jake Allen Company</h1>
+  <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
+  <button class="button">Learn More</button>
 
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
 
@@ -151,10 +75,11 @@
 
     createChat({
       webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
-      position: 'bottom-right',
-      theme: 'dark',
-      title: '💬 Chat with us'
+      position: 'bottom-right',  // Position of the widget
+      theme: 'dark',             // 'dark' or 'light'
+      title: 'Chat with us'      // Optional header title
     });
   </script>
 </body>
 </html>
+
