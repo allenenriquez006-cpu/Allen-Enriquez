@@ -20,14 +20,20 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: left;
+      justify-content: flex-start;
       min-height: 100vh;
-      text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      max-width: 900px;
+      width: 100%;
+      text-align: left;
     }
 
     h1 {
-      font-size: 5rem;
+      font-size: 3.5rem;
       margin-bottom: 1rem;
       font-weight: 700;
       color: #ffffff;
@@ -38,11 +44,10 @@
       font-size: 1.2rem;
       max-width: 650px;
       color: #b5b5b5;
-      line-height: 1.6;
+      margin-bottom: 2rem;
     }
 
     .button {
-      margin-top: 2rem;
       padding: 0.9rem 2rem;
       font-size: 1rem;
       border: none;
@@ -62,25 +67,60 @@
     }
 
     footer {
-      margin-top: 7rem;
+      margin-top: auto;
       font-size: 0.9rem;
       color: #777;
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid #222;
+      width: 100%;
     }
 
-    /* Force ALL chat messages to align left */
+    /* Chat widget customization */
+    .n8n-chat {
+      font-family: "Montserrat", sans-serif !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+    }
+
+    .n8n-chat-header {
+      background: linear-gradient(135deg, #06beb6, #48b1bf) !important;
+      color: #fff !important;
+      font-weight: 600 !important;
+      text-align: left !important;
+      padding-left: 20px !important;
+    }
+
     .n8n-chat .n8n-chat-message,
     .n8n-chat .n8n-chat-message-content {
       text-align: left !important;
       justify-content: flex-start !important;
       align-items: flex-start !important;
     }
+
+    .n8n-chat .n8n-chat-message-content {
+      border-radius: 12px !important;
+      padding: 10px 14px !important;
+      font-size: 0.95rem !important;
+    }
+
+    .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
+      background: #48b1bf !important;
+      color: #fff !important;
+    }
+
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
+      background: #1a1a1a !important;
+      color: #e5e5e5 !important;
+    }
   </style>
 </head>
 <body>
-  <h1>Dex Jake Allen Company</h1>
-  <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
-
-  <button class="button">Learn More</button>
+  <header>
+    <h1>Dex Jake Allen Company</h1>
+    <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
+    <button class="button">Learn More</button>
+  </header>
 
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
 
