@@ -110,8 +110,15 @@
     }
 
     /* Bot messages: white background + black text */
-    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content,
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content * {
       background: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    /* Force override of nested spans/text */
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content span,
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content p {
       color: #000000 !important;
     }
 
