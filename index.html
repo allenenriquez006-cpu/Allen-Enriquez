@@ -29,7 +29,7 @@
     header {
       max-width: 900px;
       width: 100%;
-      text-align: center; /* Centered text */
+      text-align: center; /* Center header content */
     }
 
     h1 {
@@ -43,13 +43,13 @@
     p {
       font-size: 1.2rem;
       max-width: 650px;
-      color: #dcdcdc; /* Brighter for better contrast */
+      color: #eaeaea; /* Higher contrast */
       margin: 0 auto 2rem auto;
     }
 
     .button {
-      display: inline-block;
-      margin: 0 auto; /* Center the button */
+      display: block;          /* Block makes centering easier */
+      margin: 0 auto;          /* Center horizontally */
       padding: 0.9rem 2rem;
       font-size: 1rem;
       border: none;
@@ -83,7 +83,7 @@
       font-family: "Montserrat", sans-serif !important;
       border-radius: 12px !important;
       overflow: hidden !important;
-      font-size: 0.9rem !important;
+      font-size: 0.95rem !important; /* Slightly larger for readability */
     }
 
     .n8n-chat-header {
@@ -105,19 +105,19 @@
 
     .n8n-chat .n8n-chat-message-content {
       border-radius: 10px !important;
-      padding: 8px 12px !important;
-      font-size: 0.9rem !important;
-      font-weight: 500 !important;
+      padding: 10px 14px !important;
+      font-size: 0.95rem !important;
+      font-weight: 600 !important; /* Bold enough for clarity */
     }
 
     .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
       background: #48b1bf !important;
-      color: #ffffff !important; /* Pure white for max contrast */
+      color: #111111 !important; /* Dark text for maximum contrast */
     }
 
     .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
       background: #1a1a1a !important;
-      color: #fafafa !important; /* Brighter than before */
+      color: #ffffff !important; /* Pure white */
     }
 
     /* Input box styling */
@@ -125,7 +125,7 @@
       font-size: 0.9rem !important;
       padding: 8px 12px !important;
       background: #111 !important;
-      color: #eaeaea !important;
+      color: #ffffff !important; /* Bright white input text */
     }
 
     .n8n-chat-input::placeholder {
