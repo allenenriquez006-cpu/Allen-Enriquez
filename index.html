@@ -81,6 +81,7 @@
       font-family: "Montserrat", sans-serif !important;
       border-radius: 12px !important;
       overflow: hidden !important;
+      font-size: 0.9rem !important; /* Slightly smaller base font */
     }
 
     .n8n-chat-header {
@@ -89,6 +90,7 @@
       font-weight: 600 !important;
       text-align: left !important;
       padding-left: 20px !important;
+      font-size: 1rem !important; /* Header font size */
     }
 
     .n8n-chat .n8n-chat-message,
@@ -96,12 +98,14 @@
       text-align: left !important;
       justify-content: flex-start !important;
       align-items: flex-start !important;
+      line-height: 1.4 !important; /* Tighter spacing */
     }
 
     .n8n-chat .n8n-chat-message-content {
-      border-radius: 12px !important;
-      padding: 10px 14px !important;
-      font-size: 0.95rem !important;
+      border-radius: 10px !important;
+      padding: 8px 12px !important;
+      font-size: 0.9rem !important; /* Smaller text */
+      font-weight: 500 !important; /* Medium clarity */
     }
 
     .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
@@ -111,7 +115,13 @@
 
     .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
       background: #1a1a1a !important;
-      color: #e5e5e5 !important;
+      color: #f0f0f0 !important; /* Brighter text for readability */
+    }
+
+    /* Optional: make input area match */
+    .n8n-chat-input {
+      font-size: 0.9rem !important;
+      padding: 8px 12px !important;
     }
   </style>
 </head>
