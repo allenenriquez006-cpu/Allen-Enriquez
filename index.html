@@ -9,17 +9,14 @@
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 
   <style>
-    /* ---- Page layout ---- */
-    :root{
-      /* n8n official customization vars (strong contrast + size) */
+    :root {
+      /* Custom colors */
       --chat--message--bot--background: #ffffff;
       --chat--message--bot--color: #000000;
-      --chat--message--user--background: #06beb6; /* blue-green */
+      --chat--message--user--background: #06beb6;
       --chat--message--user--color: #ffffff;
       --chat--message--font-size: 0.95rem;
       --chat--message-line-height: 1.6;
-      --chat--window--width: 420px;   /* optional tweak */
-      --chat--window--height: 560px;  /* optional tweak */
     }
 
     body {
@@ -28,85 +25,76 @@
       background-color: #000;
       color: #fff;
       min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
-    }
-
-    .hero {
       display: flex;
       flex-direction: column;
-      align-items: center;   /* center the content block only */
       justify-content: center;
-      padding: 48px 20px;
-      gap: 16px;
-      text-align: center;    /* center just the hero text */
+      align-items: center;
+      text-align: center;
     }
 
     h1 {
       font-size: 3rem;
-      margin: 0 0 8px 0;
+      margin-bottom: 1rem;
     }
 
     p {
       font-size: 1.2rem;
-      max-width: 640px;
-      margin: 0 auto;
-      color: #e6e6e6;
+      max-width: 600px;
     }
 
     .button {
-      margin: 32px auto 0;     /* centers horizontally */
-      display: inline-block;   /* ensures the auto margin works */
-      padding: 0.8rem 1.6rem;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
       font-size: 1rem;
       border: none;
-      border-radius: 10px;
-      background: #ffffff;
-      color: #000000;
+      border-radius: 8px;
+      background: #fff;
+      color: #000;
       cursor: pointer;
-      transition: transform .15s ease, background .2s ease, color .2s ease;
     }
+
     .button:hover {
       background: #444;
       color: #fff;
-      transform: translateY(-2px);
     }
 
     footer {
-      padding: 14px 20px;
-      text-align: center;
-      color: #aaa;
+      margin-top: 3rem;
       font-size: 0.9rem;
+      color: #aaa;
     }
 
-    /* ---- Chat: render into a dedicated host and force left alignment there only ---- */
-    #n8n-chat-host,
-    #n8n-chat-host * {
-      text-align: left !important;        /* kill inherited center alignment */
+    /* ---- FIX BOT ALIGNMENT ---- */
+    .n8n-chat .n8n-chat-message--bot {
+      justify-content: flex-start !important;   /* Align bubble to the left */
+    }
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content {
+      text-align: left !important;              /* Align text inside */
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+    .n8n-chat .n8n-chat-message--bot .n8n-chat-message-content * {
+      text-align: left !important;
+      color: #000000 !important;
     }
 
-    /* Optional: tidy message bubble layout a bit */
-    #n8n-chat-host .n8n-chat-message { align-items: flex-start !important; }
-    #n8n-chat-host .n8n-chat-message-content { border-radius: 14px !important; }
-
-    /* Make input text clearly readable */
-    #n8n-chat-host textarea,
-    #n8n-chat-host input {
-      color: #000 !important;
+    /* ---- USER ALIGNMENT ---- */
+    .n8n-chat .n8n-chat-message--user {
+      justify-content: flex-end !important;     /* Align bubble to the right */
+    }
+    .n8n-chat .n8n-chat-message--user .n8n-chat-message-content {
+      text-align: right !important;
+      background: #06beb6 !important;
+      color: #ffffff !important;
     }
   </style>
 </head>
 <body>
-  <main class="hero">
-    <h1>Dex Jake Allen Company</h1>
-    <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
-    <button class="button">Learn More</button>
-  </main>
+  <h1>Dex Jake Allen Company</h1>
+  <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
+  <button class="button">Learn More</button>
 
   <footer>&copy; 2025 Dex Jake Allen Company. All rights reserved.</footer>
-
-  <!-- Chat host container: the widget renders INSIDE here -->
-  <div id="n8n-chat-host"></div>
 
   <!-- n8n Chat Widget Script -->
   <script type="module">
@@ -114,17 +102,9 @@
 
     createChat({
       webhookUrl: 'https://allenenriquez.app.n8n.cloud/webhook/906d1016-3ba4-42f8-b057-5f8dab6823a3/chat',
-      target: '#n8n-chat-host',  // <— render into our host (fixes inheritance issues)
-      mode: 'window',
-      showWelcomeScreen: false,
-      loadPreviousSession: true,
-      i18n: {
-        en: {
-          title: 'Chat with us',
-          subtitle: '',
-          inputPlaceholder: 'Type your message…'
-        }
-      }
+      position: 'bottom-right',
+      theme: 'dark',
+      title: 'Chat with us'
     });
   </script>
 </body>
