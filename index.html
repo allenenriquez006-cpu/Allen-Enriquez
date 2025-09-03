@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dex Jake Allen Company</title>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <!-- n8n Chat Widget CSS -->
   <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
 
   <style>
     body {
       margin: 0;
-      font-family: "Poppins", Arial, sans-serif;
-      background: linear-gradient(135deg, #ffdee9, #ff9a9e, #fad0c4);
-      color: #4a2c2c;
+      font-family: "Montserrat", sans-serif;
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb, #fad0c4);
+      color: #2c2c2c;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -26,62 +29,43 @@
     h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      color: #b83280;
-      text-shadow: 2px 2px #ffd6e0;
+      font-weight: 700;
+      color: #3c3c3c;
+      letter-spacing: 1px;
     }
 
     p {
       font-size: 1.2rem;
-      max-width: 600px;
-      color: #4a2c2c;
+      max-width: 650px;
+      color: #444;
+      line-height: 1.6;
     }
 
     .button {
       margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
+      padding: 0.9rem 2rem;
       font-size: 1rem;
       border: none;
       border-radius: 30px;
-      background-color: #ff69b4;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: #fff;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+      box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
     }
 
     .button:hover {
-      background-color: #ff1493;
-      box-shadow: 0 6px 14px rgba(255, 20, 147, 0.6);
-      transform: scale(1.05);
+      background: linear-gradient(135deg, #5a67d8, #6b46c1);
+      box-shadow: 0 6px 16px rgba(91, 50, 143, 0.4);
+      transform: translateY(-3px);
     }
 
     footer {
       margin-top: 2rem;
       font-size: 0.9rem;
-      color: #5c3d3d;
-    }
-
-    /* Image section */
-    .image-container {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-
-    .image-container img {
-      width: 100%;
-      max-width: 350px;
-      border-radius: 20px;
-      box-shadow: 0 6px 14px rgba(255, 105, 180, 0.4);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .image-container img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 18px rgba(255, 20, 147, 0.5);
+      color: #333;
+      opacity: 0.8;
     }
 
     /* Left-align chat messages in n8n widget */
@@ -93,12 +77,6 @@
 <body>
   <h1>Dex Jake Allen Company</h1>
   <p>Welcome to Dex Jake Allen Company. We are building something amazing. Stay tuned for updates!</p>
-
-  <!-- Image section -->
-  <div class="image-container">
-    <img src="https://i.imgur.com/f49GdlC.jpg" alt="Gym pose 1" />
-    <img src="https://i.imgur.com/orJ0dg2.jpg" alt="Gym pose 2" />
-  </div>
 
   <button class="button">Learn More</button>
 
